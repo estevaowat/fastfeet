@@ -2,6 +2,7 @@ import { isBefore, isAfter, setHours, startOfHour } from 'date-fns';
 import { Op } from 'sequelize';
 import DeliveryMan from '../models/DeliveryMan';
 import Delivery from '../models/Delivery';
+import File from '../models/File';
 
 class WithdrawController {
   async index(req, res) {
@@ -22,10 +23,17 @@ class WithdrawController {
           end_date: {
             [Op.ne]: null,
           },
-          signtaure_id: {
+          signature_id: {
             [Op.ne]: null,
           },
         },
+        include: [
+          {
+            model: File,
+            as: 'signature',
+            attributes: ['name', 'path', 'url'],
+          },
+        ],
       });
 
       return res.json(deliveries);
@@ -53,6 +61,12 @@ class WithdrawController {
 
     if (!delivery) {
       return res.status(400).json({ error: 'Delivery not found' });
+    }
+
+    if (delivery.start_date) {
+      return res
+        .status(400)
+        .json({ error: 'Order has already been withdrawn' });
     }
 
     const date = new Date();
@@ -85,25 +99,6 @@ class WithdrawController {
     await delivery.save();
 
     return res.json(delivery);
-  }
-
-  async update(req, res) {
-    const { deliveryman_id, delivery_id } = req.params;
-
-    const deliveryManExists = await DeliveryMan.findByPk(deliveryman_id);
-
-    if (!deliveryManExists) {
-      return res.status(400).json({ error: 'Delivery man not found' });
-    }
-    const delivery = await Delivery.findByPk(delivery_id);
-
-    if (!delivery) {
-      return res.status(400).json({ error: 'Delivery not found' });
-    }
-
-    // Enviar em imagem com signature_id
-
-    return res.json();
   }
 }
 
