@@ -1,9 +1,10 @@
-<h1 align="center">Welcome to Fastfeet 👋</h1>
+<h1 align="center">Backend ⚙️</h1>
 
-
-> Transporter application to control deliveries
+> Transporter application to control deliveries.
 
 ## Install
+
+To install all yarn dependencies:
 
 ```sh
 yarn install
@@ -11,21 +12,23 @@ yarn install
 
 ## Usage
 
+Run command to create a postgres image:
+
 ```sh
-development mode - yarn dev
+docker run --name postgresfastfeet -e POSTGRES_PASSWORD=docker -p 5432:5432 -d -t postgres
 ```
 
-## Author
+Run backend environment in development mode:
 
-👤 **estevaowat**
+```sh
+yarn dev
+```
 
-- Website: https://www.linkedin.com/in/estev%C3%A3o-watanabe-b25795124/
-- Twitter: [@estevao_japa](https://twitter.com/estevao_japa)
-- Github: [@estevaowat](https://github.com/estevaowat)
+## Test
 
-## Show your support
+You can click on this button to get all application endpoints using insomnia.
 
-Give a ⭐️ if this project helped you!
+<a href="https://insomnia.rest/run/?label=git%40github.com%3Aestevaowat%2Ffastfeet.git&uri=https%3A%2F%2Fraw.githubusercontent.com%2Festevaowat%2Ffastfeet%2Fmaster%2Fbackend%2Finsomnia_requests.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 
 ---
 
