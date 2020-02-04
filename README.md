@@ -1,28 +1,17 @@
-<img src="https://github.com/estevaowat/fastfeet/tree/master/backend/.github/logo.png"/>
+<img src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
 
 <h1 align="center">Welcome to Fastfeet 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
+ 
   <a href="https://twitter.com/estevao_japa" target="_blank">
     <img alt="Twitter: estevao\_japa" src="https://img.shields.io/twitter/follow/estevao_japa.svg?style=social" />
   </a>
 </p>
 
-> Transporter application to control deliveries
+## About
 
-## Install
-
-````sh
-yarn install```
-
-## Usage
-
-```sh
-development mode - yarn dev
-````
+This is a mono repository to a transporter application to control deliveries using NodeJS, ReactJs and React Native and tools around this environment.
 
 ## Author
 
@@ -34,8 +23,8 @@ development mode - yarn dev
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if you liked this project!
 
 ---
 
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_This README was generated with ❤️_
