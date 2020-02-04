@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
+<img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
 
 <h1 align="center">Welcome to Fastfeet 👋</h1>
 <p>
