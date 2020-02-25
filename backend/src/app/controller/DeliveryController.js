@@ -124,10 +124,36 @@ class DeliveryController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
-    const { id } = req.params;
-    const delivery = await Delivery.findByPk(id);
+    const delivery = await Delivery.findByPk(req.params.id, {
+      attributes: ['id', 'product'],
+      include: [
+        {
+          model: DeliveryMan,
+          as: 'delivery_man',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: [
+            'id',
+            'name',
+            'address',
+            'number',
+            'address_complement',
+            'state',
+            'city',
+            'zip_code',
+          ],
+        },
+      ],
+    });
+    if (!delivery) {
+      return res.status(400).json({ error: 'Delivery not found' });
+    }
+
     await delivery.update(req.body);
-    return res.json();
+    return res.json(delivery);
   }
 
   async destroy(req, res) {
@@ -135,11 +161,17 @@ class DeliveryController {
 
     const delivery = await Delivery.findByPk(id);
 
-    await delivery.update({
-      canceled_at: new Date(),
-    });
+    if (!delivery) {
+      return res.status(400).json({ error: 'Delivery not found' });
+    }
 
-    return res.json();
+    delivery.canceled_at = new Date();
+
+    await delivery.save();
+
+    const { product, canceled_at } = delivery;
+
+    return res.json({ id: Number(id), product, canceled_at });
   }
 }
 

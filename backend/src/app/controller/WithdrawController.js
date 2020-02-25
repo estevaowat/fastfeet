@@ -85,6 +85,7 @@ class WithdrawController {
         start_date: {
           [Op.between]: [hourStart, hourEnd],
         },
+        end_date: null,
       },
     });
 
