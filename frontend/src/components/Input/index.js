@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
 
-export default function Input({ name, ...rest }) {
+export default function Input({ name, label, ...rest }) {
   const inputRef = useRef(null);
-  const { fieldName, defaultValue = '', registerField } = useField(name);
+
+  const { fieldName, defaultValue = '', registerField, error } = useField(name);
+
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -12,9 +13,18 @@ export default function Input({ name, ...rest }) {
       path: 'value'
     });
   }, [fieldName, registerField]);
-  return <input ref={inputRef} defaultValue={defaultValue} {...rest} />;
-}
+  return (
+    <>
+      {label && <label htmlFor={fieldName}>{label}</label>}
 
-Input.propTypes = {
-  name: PropTypes.string.isRequired
-};
+      <input
+        ref={inputRef}
+        id={fieldName}
+        defaultValue={defaultValue}
+        {...rest}
+      />
+
+      {error && <span style={{ color: '#f00' }}>{error}</span>}
+    </>
+  );
+}
