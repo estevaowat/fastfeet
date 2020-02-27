@@ -2,6 +2,6 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function Recipients() {
+export default function Create() {
   return <div />;
 }
