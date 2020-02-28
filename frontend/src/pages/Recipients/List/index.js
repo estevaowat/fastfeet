@@ -1,5 +1,7 @@
 import React from 'react';
-import { MdAdd, MdMoreHoriz } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
+import history from '~/services/history';
+import ActionButtons from '~/components/ActionButtons';
 import { Container, Controls, Grid } from './styles';
 
 export default function List() {
@@ -8,7 +10,10 @@ export default function List() {
       <strong>Gerenciando destinatários</strong>
       <Controls>
         <input placeholder="Buscar por destinatário" />
-        <button type="button">
+        <button
+          type="button"
+          onClick={() => history.push('/recipients/create')}
+        >
           <MdAdd size={20} color="#fff" /> CADASTRAR
         </button>
       </Controls>
@@ -27,9 +32,7 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <button type="button">
-                <MdMoreHoriz size={20} color="#C6C6C6" />
-              </button>
+              <ActionButtons />
             </td>
           </tr>
           <tr>
@@ -37,9 +40,7 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <button type="button">
-                <MdMoreHoriz size={20} color="#C6C6C6" />
-              </button>
+              <ActionButtons />
             </td>
           </tr>
           <tr>
@@ -47,9 +48,7 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <button type="button">
-                <MdMoreHoriz size={20} color="#C6C6C6" />
-              </button>
+              <ActionButtons />
             </td>
           </tr>
           <tr>
@@ -57,9 +56,7 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <button type="button">
-                <MdMoreHoriz size={20} color="#C6C6C6" />
-              </button>
+              <ActionButtons />
             </td>
           </tr>
         </tbody>

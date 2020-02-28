@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
 export const Container = styled.div`
   margin: 35px auto;
@@ -29,6 +30,10 @@ export const Controls = styled.div`
     height: 36px;
     padding: 0 15px;
 
+    &:hover {
+      background: ${lighten(0.2, '#7d40e7')};
+    }
+
     svg {
       margin-right: 6px;
     }
@@ -47,6 +52,10 @@ export const Grid = styled.table`
 
     th {
       padding: 20px 15px 0;
+    }
+
+    th:last-child {
+      text-align: center;
     }
   }
 
