@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ReactInputMask from 'react-input-mask';
 import { useField } from '@unform/core';
 
@@ -26,3 +27,12 @@ export default function InputMask({ name, label, ...rest }) {
     </>
   );
 }
+
+InputMask.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired
+};
+
+InputMask.defaultProps = {
+  label: ''
+};

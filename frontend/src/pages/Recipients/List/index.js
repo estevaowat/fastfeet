@@ -5,6 +5,10 @@ import ActionButtons from '~/components/ActionButtons';
 import { Container, Controls, Grid } from './styles';
 
 export default function List() {
+  function handleDelete() {
+    console.log('Open confirmation to delete');
+  }
+
   return (
     <Container>
       <strong>Gerenciando destinatários</strong>
@@ -32,7 +36,11 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <ActionButtons />
+              <ActionButtons
+                visualizable={false}
+                onEdit={() => history.push('/recipients/create/123')}
+                onDelete={() => handleDelete()}
+              />
             </td>
           </tr>
           <tr>
@@ -40,7 +48,11 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <ActionButtons />
+              <ActionButtons
+                visualizable={false}
+                onEdit={() => history.push('/recipients/create/123')}
+                onDelete={() => handleDelete()}
+              />
             </td>
           </tr>
           <tr>
@@ -48,7 +60,11 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <ActionButtons />
+              <ActionButtons
+                visualizable={false}
+                onEdit={() => history.push('/recipients/create/123')}
+                onDelete={() => handleDelete()}
+              />
             </td>
           </tr>
           <tr>
@@ -56,7 +72,11 @@ export default function List() {
             <td>Ludwig van Beethoven</td>
             <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <ActionButtons />
+              <ActionButtons
+                visualizable={false}
+                onEdit={() => history.push('/recipients/create/123')}
+                onDelete={() => handleDelete()}
+              />
             </td>
           </tr>
         </tbody>

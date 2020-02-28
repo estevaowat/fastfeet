@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   MdMoreHoriz,
   MdVisibility,
@@ -7,7 +8,7 @@ import {
 } from 'react-icons/md';
 import { Container, ActionList, Action } from './styles';
 
-export default function ActionButtons({ handleDelete }) {
+export default function ActionButtons({ visualizable, onEdit, onDelete }) {
   const [visible, setVisible] = useState(false);
 
   function handleActionsToggle() {
@@ -20,16 +21,28 @@ export default function ActionButtons({ handleDelete }) {
         <MdMoreHoriz size={20} color="#C6C6C6" />
       </button>
       <ActionList visible={visible}>
-        <Action>
-          <MdVisibility size={20} color="#8E5BE8" /> <span>Visualizar</span>
-        </Action>
-        <Action>
+        {visualizable && (
+          <Action>
+            <MdVisibility size={20} color="#8E5BE8" /> <span>Visualizar</span>
+          </Action>
+        )}
+        <Action onClick={onEdit}>
           <MdModeEdit size={20} color="#4D85EE" /> <span>Editar</span>
         </Action>
-        <Action onClick={handleDelete}>
+        <Action onClick={onDelete}>
           <MdDeleteForever size={20} color="#DE3B3B" /> <span>Deletar</span>
         </Action>
       </ActionList>
     </Container>
   );
 }
+
+ActionButtons.propTypes = {
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  visualizable: PropTypes.bool
+};
+
+ActionButtons.defaultProps = {
+  visualizable: false
+};

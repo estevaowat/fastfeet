@@ -1,10 +1,16 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Recipient from '../models/Recipient';
 
 class RecipientController {
   async index(req, res) {
-    const { page = 1 } = req.query;
-    const recipients = await Recipient.findAll({
+    const { page = 1, query = '' } = req.query;
+    const recipients = await Recipient.findAndCountAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${query}%`,
+        },
+      },
       order: ['state', 'city', 'address'],
       limit: 20,
       offset: (page - 1) * 20,
