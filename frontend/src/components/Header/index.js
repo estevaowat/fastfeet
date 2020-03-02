@@ -19,9 +19,9 @@ export default function Header() {
           <NavLink to="/deliveries" activeClassName="active">
             ENCOMENDAS{' '}
           </NavLink>
-          <NavLink to="/deliveries">ENTREGADORES</NavLink>
+          <NavLink to="/deliverymen">ENTREGADORES</NavLink>
           <NavLink to="/recipients">DESTINATÁRIOS</NavLink>
-          <NavLink to="/deliveries">PROBLEMAS</NavLink>
+          <NavLink to="/problems">PROBLEMAS</NavLink>
         </nav>
 
         <aside>

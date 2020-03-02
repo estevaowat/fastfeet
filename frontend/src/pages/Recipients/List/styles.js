@@ -18,6 +18,27 @@ export const Controls = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  label {
+    display: flex;
+    background: #fff;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    input {
+      border: 0;
+      height: 36px;
+      padding-right: 45px;
+      color: #444;
+      width: 100%;
+    }
+
+    svg {
+      color: #999;
+      margin: 0 15px 0 8px;
+    }
+  }
+
   button {
     display: flex;
     align-items: center;

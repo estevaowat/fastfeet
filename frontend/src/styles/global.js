@@ -13,6 +13,7 @@ export default createGlobalStyle`
     height: 100%;
   }
   html, body, #root{
+    background: #f5f5f5;
     height: 100%;
     overflow: auto;
     color: Roboto
@@ -22,6 +23,7 @@ export default createGlobalStyle`
   }
   body, input, button {
     font: 14px 'Roboto', sans-serif;
+
   }
   a {
     text-decoration: none;

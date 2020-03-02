@@ -12,7 +12,7 @@ export const Content = styled.div`
   align-items: center;
 
   height: 64px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 
   nav {
