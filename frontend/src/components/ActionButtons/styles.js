@@ -22,6 +22,7 @@ export const ActionList = styled.ul`
   padding: 20px 15px;
   display: ${props => (props.visible ? 'block' : 'none')};
   z-index: 1;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
   &::before {
     position: absolute;
@@ -34,6 +35,7 @@ export const ActionList = styled.ul`
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-bottom: 9px solid #fff;
+    box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.1);
   }
 `;
 

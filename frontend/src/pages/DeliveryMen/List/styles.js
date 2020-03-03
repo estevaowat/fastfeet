@@ -28,14 +28,14 @@ export const Controls = styled.div`
     input {
       border: 0;
       height: 36px;
-      padding-right: 45px;
+      padding-right: 40px;
       color: #444;
       width: 240px;
     }
 
     svg {
       color: #999;
-      margin: 0 15px 0 8px;
+      margin: 0 15px 0 9px;
     }
   }
 
@@ -94,6 +94,12 @@ export const Grid = styled.table`
         border: none;
         padding: 18px 0 18px 15px;
         border-radius: 4px;
+
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+        }
       }
     }
   }
