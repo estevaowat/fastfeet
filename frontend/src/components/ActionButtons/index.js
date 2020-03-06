@@ -6,13 +6,23 @@ import {
   MdModeEdit,
   MdDeleteForever
 } from 'react-icons/md';
+import Modal from '~/components/Modal';
 import { Container, ActionList, Action } from './styles';
 
-export default function ActionButtons({ visualizable, onEdit, onDelete }) {
+export default function ActionButtons({
+  visualizable,
+  modalComponent: ModalComponent,
+  onEdit,
+  onDelete
+}) {
   const [visible, setVisible] = useState(false);
-
+  const [isOpen, setIsOpen] = React.useState(false);
   function handleActionsToggle() {
     return setVisible(!visible);
+  }
+
+  function handleModalToggle() {
+    setIsOpen(!isOpen);
   }
 
   return (
@@ -22,8 +32,11 @@ export default function ActionButtons({ visualizable, onEdit, onDelete }) {
       </button>
       <ActionList visible={visible}>
         {visualizable && (
-          <Action>
+          <Action onClick={handleModalToggle}>
             <MdVisibility size={20} color="#8E5BE8" /> <span>Visualizar</span>
+            <Modal isOpen={isOpen}>
+              <ModalComponent />
+            </Modal>
           </Action>
         )}
         <Action onClick={onEdit}>

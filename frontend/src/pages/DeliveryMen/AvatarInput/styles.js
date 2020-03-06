@@ -22,7 +22,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Preview = styled.div`
+export const AddPhoto = styled.div`
   background: ${props => props.backgroundColor};
   border: 3px dashed #ddd;
   border-radius: 50%;

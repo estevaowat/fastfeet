@@ -25,6 +25,7 @@ routes.put('/recipients/:id', RecipientController.update);
 routes.delete('/recipients/:id', RecipientController.destroy);
 
 routes.get('/deliveryman', DeliveryManController.index);
+routes.get('/deliveryman/:id', DeliveryManController.show);
 routes.post('/deliveryman', DeliveryManController.store);
 routes.put('/deliveryman/:id', DeliveryManController.update);
 routes.delete('/deliveryman/:id', DeliveryManController.destroy);
@@ -47,6 +48,7 @@ routes.put('/problem/:id/cancel-delivery', DeliveryProblemController.update);
 routes.get('/deliveryman/:id/completed-deliveries', FinishedController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
+routes.put('/files/:id', upload.single('file'), FileController.update);
 routes.post(
   '/deliveryman/:deliveryman_id/deliveries/:delivery_id/finish',
   upload.single('file'),

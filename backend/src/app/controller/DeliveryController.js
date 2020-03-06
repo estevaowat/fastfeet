@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import DeliveryMan from '../models/DeliveryMan';
@@ -7,16 +8,25 @@ import Mail from '../../lib/Mail';
 
 class DeliveryController {
   async index(req, res) {
-    const { page = 1 } = req.query;
+    const { page = 1, query = '' } = req.query;
 
-    const deliveries = await Delivery.findAll({
+    const deliveries = await Delivery.findAndCountAll({
       where: {
-        canceled_at: null,
+        product: {
+          [Op.iLike]: `%${query}%`,
+        },
       },
       order: ['id'],
       limit: 20,
       offset: (page - 1) * 20,
-      attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+      attributes: [
+        'id',
+        'product',
+        'recipient_id',
+        'canceled_at',
+        'start_date',
+        'end_date',
+      ],
       include: [
         {
           model: File,
@@ -40,6 +50,13 @@ class DeliveryController {
           model: DeliveryMan,
           as: 'delivery_man',
           attributes: ['name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'name', 'path', 'url'],
+            },
+          ],
         },
       ],
     });

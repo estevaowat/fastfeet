@@ -21,7 +21,7 @@ export const ActionList = styled.ul`
   border-radius: 4px;
   padding: 20px 15px;
   display: ${props => (props.visible ? 'block' : 'none')};
-  z-index: 1;
+
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
   &::before {
@@ -30,12 +30,14 @@ export const ActionList = styled.ul`
     top: -7px;
     width: 0;
     height: 0;
-
+    background: #fff;
     content: '';
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 9px solid #fff;
-    box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.1);
+
+    border-width: 0 7px 9px 7px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+
+    box-shadow: 0px 0px 6px rgba (0, 0, 0, 0.1);
   }
 `;
 
