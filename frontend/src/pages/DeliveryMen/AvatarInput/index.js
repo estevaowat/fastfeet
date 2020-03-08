@@ -6,10 +6,10 @@ import { Container, AddPhoto } from './styles';
 import api from '~/services/api';
 
 export default function ImageInput({ name, image, ...rest }) {
-  const { registerField, defaultValue } = useField('avatar_id');
+  const { fieldName, registerField, defaultValue } = useField(name);
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
-  const [preview, setPreview] = useState(defaultValue && defaultValue.url);
+  const [preview, setPreview] = useState(null);
 
   const inputRef = useRef();
 
@@ -26,32 +26,33 @@ export default function ImageInput({ name, image, ...rest }) {
     data.append('file', e.target.files[0]);
 
     if (file) {
-      const response = await api.post('files', data);
-      const { id, url } = response.data;
-      setFile(id);
-      setPreview(url);
+      await api.put(`files/${file}`, data);
     } else {
-      const response = await api.post(`files/${file}`, data);
-
-      const { url } = response.data;
-      setPreview(url);
+      const response = await api.post('files', data);
+      const { id } = response.data;
+      setFile(id);
     }
   }
 
   useEffect(() => {
     registerField({
-      name,
+      name: fieldName,
       ref: inputRef.current,
       path: 'dataset.file',
       clearValue(ref) {
         ref.value = '';
         setPreview(null);
       },
-      setValue(_, value) {
+      async setValue(_, value) {
+        if (!preview) {
+          const response = await api.get(`files/${value}`);
+          setPreview(response.data.url);
+        }
+
         setFile(value);
       }
     });
-  }, [name, registerField]);
+  }, [fieldName, registerField, preview]);
 
   return (
     <Container>

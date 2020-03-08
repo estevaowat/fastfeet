@@ -47,6 +47,7 @@ routes.put('/problem/:id/cancel-delivery', DeliveryProblemController.update);
 
 routes.get('/deliveryman/:id/completed-deliveries', FinishedController.index);
 
+routes.get('/files/:id', FileController.show);
 routes.post('/files', upload.single('file'), FileController.store);
 routes.put('/files/:id', upload.single('file'), FileController.update);
 routes.post(

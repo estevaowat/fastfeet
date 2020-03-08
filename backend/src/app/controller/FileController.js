@@ -1,6 +1,13 @@
 import File from '../models/File';
 
 class FileController {
+  async show(req, res) {
+    const { id } = req.params;
+    const file = await File.findByPk(id);
+
+    return res.json(file);
+  }
+
   async store(req, res) {
     const { originalname: name, filename: path } = req.file;
 
@@ -17,10 +24,11 @@ class FileController {
 
     const file = await File.findByPk(id);
     const { originalname: name, filename: path } = req.file;
-    file.name = name;
-    file.path = path;
 
-    await file.update();
+    await file.update({
+      name,
+      path,
+    });
 
     return res.json({ id, name, path, url: file.url });
   }

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
@@ -14,11 +14,14 @@ import { Container, Header, Button } from './styles';
 export default function Create({ match }) {
   const formRef = useRef(null);
   const { id } = match.params;
+  const [deliveryMan, setDeliveryMan] = useState({});
 
   useEffect(() => {
     async function loadDeliveryMen() {
       const response = await api.get(`/deliveryman/${id}`);
+
       formRef.current.setData(response.data);
+      setDeliveryMan(response.data);
     }
     loadDeliveryMen();
   }, [id]);
@@ -76,7 +79,10 @@ export default function Create({ match }) {
         </div>
       </Header>
       <Form ref={formRef} onSubmit={handleSubmit} id="form-delivery-men">
-        <AvatarInput name="avatar_id" />
+        <AvatarInput
+          name="avatar_id"
+          image={deliveryMan.avatar && deliveryMan.avatar.url}
+        />
         <Input name="name" label="Nome" placeholder="Nome completo" />
         <Input name="email" label="E-mail" placeholder="Seu e-mail" />
       </Form>

@@ -31,7 +31,7 @@ class RecipientController {
       state,
       city,
       zip_code,
-    } = await recipient;
+    } = recipient;
 
     return res.json({
       id,

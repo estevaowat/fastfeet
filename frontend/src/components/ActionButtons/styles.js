@@ -9,6 +9,7 @@ export const Container = styled.div`
     border: 0;
     display: flex;
     justify-content: flex-end;
+    z-index: 0;
   }
 `;
 
@@ -21,7 +22,7 @@ export const ActionList = styled.ul`
   border-radius: 4px;
   padding: 20px 15px;
   display: ${props => (props.visible ? 'block' : 'none')};
-
+  z-index: 1;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
   &::before {
