@@ -26,6 +26,10 @@ class DeliveryController {
         'canceled_at',
         'start_date',
         'end_date',
+        'delivered',
+        'pending',
+        'available',
+        'canceled',
       ],
       include: [
         {

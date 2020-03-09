@@ -5,7 +5,7 @@ import { useField } from '@unform/core';
 import { Container, AddPhoto } from './styles';
 import api from '~/services/api';
 
-export default function ImageInput({ name, image, ...rest }) {
+export default function ImageInput({ name, ...rest }) {
   const { fieldName, registerField, defaultValue } = useField(name);
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
@@ -22,7 +22,6 @@ export default function ImageInput({ name, image, ...rest }) {
     }
 
     const data = new FormData();
-
     data.append('file', e.target.files[0]);
 
     if (file) {

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MdSearch, MdAdd } from 'react-icons/md';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import history from '~/services/history';
 import api from '~/services/api';
-
 import ActionButtons from '~/components/ActionButtons';
 import Pagination from '~/components/Pagination';
 import { Container, Controls, Grid } from './styles';
@@ -15,6 +16,8 @@ export default function List() {
   const nextPageDisabled = useMemo(() => {
     return page >= perPage;
   }, [page, perPage]);
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     async function loadDeliveryMen() {
@@ -31,7 +34,35 @@ export default function List() {
     loadDeliveryMen();
   }, [page, search]);
 
-  function handleDelete() {}
+  function handleDelete(id) {
+    MySwal.fire({
+      title: 'Você tem certeza?',
+      text: 'Se você fizer isso não poderá voltar atrás!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sim, deletar!',
+      cancelButtonText: 'Cancelar'
+    }).then(async result => {
+      if (result.value) {
+        try {
+          await api.delete(`/deliveryman/${id}`);
+          setDeliveryMen(
+            deliveryMen.filter(deliveryMan => deliveryMan.id !== id)
+          );
+
+          Swal.fire(
+            'Entregador deletado!',
+            'Entregador deletado com sucesso.',
+            'success'
+          );
+        } catch (error) {
+          Swal.fire('Erro!', 'Erro ao deletar entregador.', 'error');
+        }
+      }
+    });
+  }
 
   return (
     <Container>

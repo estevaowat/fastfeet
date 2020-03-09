@@ -11,6 +11,7 @@ export const Container = styled.div`
     color: #444;
   }
 `;
+
 export const Controls = styled.div`
   margin-top: 35px;
   display: flex;
@@ -109,5 +110,28 @@ export const Grid = styled.table`
         }
       }
     }
+  }
+`;
+
+export const Status = styled.div`
+  div {
+    &::before {
+      width: 10px;
+      height: 10px;
+      background: ${props => props.color};
+      border-radius: 50%;
+      margin-right: 6px;
+      content: '';
+    }
+    background: ${props => props.colorOutside};
+    padding: 3px 7px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: ${props => {
+      return props.color;
+    }};
+
+    overflow: hidden;
   }
 `;

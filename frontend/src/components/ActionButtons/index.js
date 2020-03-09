@@ -22,7 +22,13 @@ export default function ActionButtons({
   }
 
   function handleModalToggle() {
+    setVisible(!visible);
     setIsOpen(!isOpen);
+  }
+
+  function handleDelete() {
+    setVisible(!visible);
+    onDelete();
   }
 
   return (
@@ -42,7 +48,7 @@ export default function ActionButtons({
         <Action onClick={onEdit}>
           <MdModeEdit size={20} color="#4D85EE" /> <span>Editar</span>
         </Action>
-        <Action onClick={onDelete}>
+        <Action onClick={handleDelete}>
           <MdDeleteForever size={20} color="#DE3B3B" /> <span>Deletar</span>
         </Action>
       </ActionList>

@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { MdSearch, MdAdd } from 'react-icons/md';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import api from '~/services/api';
 import history from '~/services/history';
 import DeliveryInfo from '../DeliveryInfo';
 import Pagination from '~/components/Pagination';
 import ActionButtons from '~/components/ActionButtons';
 
-import { Container, Controls, Grid } from './styles';
+import { Container, Controls, Grid, Status } from './styles';
 
 export default function List() {
   const [page, setPage] = useState(1);
@@ -17,6 +19,41 @@ export default function List() {
     return page >= perPage;
   }, [page, perPage]);
 
+  const MySwal = withReactContent(Swal);
+
+  function formatStatusDelivery({ canceled, delivered, pending, available }) {
+    if (canceled) {
+      return {
+        textColor: '#DE3B3B',
+        colorOutside: '#FAB0B0',
+        text: 'CANCELADA'
+      };
+    }
+    if (delivered) {
+      return {
+        textColor: '#2CA42B',
+        colorOutside: '#DFF0DF',
+        text: 'ENTREGUE'
+      };
+    }
+    if (pending) {
+      return {
+        textColor: '#C1BC35',
+        colorOutside: '#F0F0DF',
+        text: 'PENDENTE'
+      };
+    }
+    if (available) {
+      return {
+        textColor: '#4D85EE',
+        colorOutside: '#BAD2FF',
+        text: 'RETIRADA'
+      };
+    }
+
+    return '';
+  }
+
   useEffect(() => {
     async function loadDeliveries() {
       const response = await api.get('/deliveries', {
@@ -26,13 +63,58 @@ export default function List() {
 
       setPerPage(response.data.count / 20);
 
-      setDeliveries(response.data.rows);
+      const data = response.data.rows.map(delivery => ({
+        ...delivery,
+        status: formatStatusDelivery(delivery)
+      }));
+
+      setDeliveries(data);
     }
 
     loadDeliveries();
   }, [page, search]);
 
-  function handleDelete(id) {}
+  function handleDelete(id) {
+    MySwal.fire({
+      title: 'Você tem certeza?',
+      text: 'Se você fizer isso não poderá voltar atrás!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sim, cancelar!',
+      cancelButtonText: 'Cancelar'
+    }).then(async result => {
+      if (result.value) {
+        try {
+          await api.delete(`/deliveries/${id}`);
+          // colocar um objeto para canceled === true
+          setDeliveries(
+            deliveries.map(delivery =>
+              delivery.id === id
+                ? {
+                    ...delivery,
+                    canceled: true,
+                    status: formatStatusDelivery({
+                      ...delivery,
+                      canceled: true
+                    })
+                  }
+                : delivery
+            )
+          );
+
+          Swal.fire(
+            'Encomenda cancelada!',
+            'Encomenda cancelada com sucesso.',
+            'success'
+          );
+        } catch (error) {
+          Swal.fire('Erro!', 'Erro ao cancelar encomenda.', 'error');
+        }
+      }
+    });
+  }
 
   return (
     <Container>
@@ -51,7 +133,7 @@ export default function List() {
 
         <button
           type="button"
-          onClick={() => history.push('/delivery-men/create')}
+          onClick={() => history.push('/deliveries/create')}
         >
           <MdAdd size={20} color="#fff" /> CADASTRAR
         </button>
@@ -88,7 +170,14 @@ export default function List() {
               </td>
               <td> {delivery.recipient.city}</td>
               <td> {delivery.recipient.state}</td>
-              <td>{delivery.status}</td>
+              <td>
+                <Status
+                  color={delivery.status.textColor}
+                  colorOutside={delivery.status.colorOutside}
+                >
+                  <div>{delivery.status.text}</div>
+                </Status>
+              </td>
               <td>
                 <ActionButtons
                   visualizable
