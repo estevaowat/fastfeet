@@ -4,7 +4,7 @@
 
 ## Install
 
-To install all yarn dependencies:
+To install yarn dependencies:
 
 ```sh
 yarn install
@@ -12,8 +12,7 @@ yarn install
 
 ## Usage
 
-- Run command to create a postgres image:
-
+- Create a postgres image:
 ```sh
 docker run --name postgresfastfeet -e POSTGRES_PASSWORD=docker -p 5432:5432 -d -t postgres
 ```
@@ -21,7 +20,6 @@ docker run --name postgresfastfeet -e POSTGRES_PASSWORD=docker -p 5432:5432 -d -
 - Create a file in root path called `.env` and complete environment variables settings.
 
 - Run project in development mode:
-
 ```sh
 yarn dev
 ```
