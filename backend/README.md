@@ -26,7 +26,7 @@ docker run --name postgresfastfeet -e POSTGRES_PASSWORD=docker -p 5432:5432 -d -
 yarn dev
 ```
 
-## Test
+## Tests
 
 Click in this button to get all application endpoints using insomnia.
 
