@@ -6,7 +6,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
  
   <a href="https://twitter.com/estevao_japa" target="_blank">
-    <img alt="Twitter: estevao\_japa" src="https://img.shields.io/twitter/follow/estevao_japa.svg?style=social" />
+    <img alt="Twitter: estevaowat" src="https://img.shields.io/twitter/follow/estevaowat.svg?style=social" />
   </a>
 </p>
 
