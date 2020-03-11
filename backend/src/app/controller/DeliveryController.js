@@ -68,6 +68,27 @@ class DeliveryController {
     return res.json(deliveries);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+    const delivery = await Delivery.findByPk(id, {
+      attributes: ['id', 'product', 'recipient_id', 'deliveryman_id'],
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: DeliveryMan,
+          as: 'delivery_man',
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
+
+    return res.json(delivery);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       product: Yup.string().required(),
@@ -135,7 +156,6 @@ class DeliveryController {
       recipient_id: Yup.number()
         .positive()
         .integer(),
-
       deliveryman_id: Yup.number()
         .positive()
         .integer(),

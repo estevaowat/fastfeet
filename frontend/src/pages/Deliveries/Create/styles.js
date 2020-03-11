@@ -17,14 +17,11 @@ export const Container = styled.div`
       font-weight: bold;
       display: block;
       margin-top: 10px;
+      padding-bottom: 9px;
     }
 
     span {
       margin-top: 5px;
-    }
-
-    > div {
-      display: flex;
     }
 
     input {
@@ -32,7 +29,7 @@ export const Container = styled.div`
       border-radius: 4px;
       height: 45px;
       font-size: 16px;
-      margin: 9px 15px 0 0;
+      margin: 0 15px 0 0;
       padding: 0 15px;
     }
   }

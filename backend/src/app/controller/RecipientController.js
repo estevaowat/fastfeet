@@ -4,7 +4,12 @@ import Recipient from '../models/Recipient';
 
 class RecipientController {
   async index(req, res) {
-    const { page = 1, query = '' } = req.query;
+    const { page = 1, query = '', all = false } = req.query;
+
+    if (all) {
+      const recipients = await Recipient.findAll();
+      return res.json(recipients);
+    }
     const recipients = await Recipient.findAndCountAll({
       where: {
         name: {

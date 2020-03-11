@@ -5,8 +5,12 @@ import File from '../models/File';
 
 class DeliveryManController {
   async index(req, res) {
-    const { page = 1, query = '' } = req.query;
+    const { page = 1, query = '', all = false } = req.query;
 
+    if (all) {
+      const deliveryMan = await DeliveryMan.findAll();
+      return res.json(deliveryMan);
+    }
     const deliveryMen = await DeliveryMan.findAndCountAll({
       where: {
         name: {

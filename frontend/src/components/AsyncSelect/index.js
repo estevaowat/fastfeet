@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
-import Select from 'react-select/async';
 import { useField } from '@unform/core';
+import Select from 'react-select/async';
 
 export default function AsyncSelect({ name, label, ...rest }) {
   const selectRef = useRef(null);
@@ -22,6 +22,12 @@ export default function AsyncSelect({ name, label, ...rest }) {
           return '';
         }
         return ref.select.state.value.value;
+      },
+      clearValue(ref) {
+        ref.select.select.clearValue();
+      },
+      setValue(ref, value) {
+        ref.select.select.setValue(value);
       }
     });
   }, [fieldName, registerField, rest.isMulti]);
@@ -30,6 +36,7 @@ export default function AsyncSelect({ name, label, ...rest }) {
       {label && <label htmlFor={fieldName}>{label}</label>}
       <Select
         cacheOptions
+        defaultOptions
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
