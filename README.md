@@ -1,11 +1,12 @@
-<img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
-
-<h1 align="center">Welcome to Fastfeet 👋</h1>
+<h1 align="center">
+  <img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
+</h1>
+<h2 align="center">Welcome to Fastfeet 👋</h2>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
  
-  <a href="https://twitter.com/estevao_japa" target="_blank">
-    <img alt="Twitter: estevao\_japa" src="https://img.shields.io/twitter/follow/estevao_japa.svg?style=social" />
+  <a href="https://twitter.com/estevaowat" target="_blank">
+    <img alt="Twitter: estevaowat" src="https://img.shields.io/twitter/follow/estevaowat.svg?style=social" />
   </a>
 </p>
 
