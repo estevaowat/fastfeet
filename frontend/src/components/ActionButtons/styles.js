@@ -51,7 +51,7 @@ export const Action = styled.li`
   & + li {
     padding-top: 15px;
     margin-top: 15px;
-    border-top: 1px solid #eeeeee;
+    border-top: 1px solid #eee;
   }
 
   svg {

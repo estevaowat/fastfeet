@@ -42,7 +42,7 @@ routes.post(
   WithdrawController.create
 );
 
-routes.get('/delivery/:id/problems', DeliveryProblemController.index);
+routes.get('/problems', DeliveryProblemController.index);
 routes.post('/delivery/:id/problems', DeliveryProblemController.store);
 routes.put('/problem/:id/cancel-delivery', DeliveryProblemController.update);
 

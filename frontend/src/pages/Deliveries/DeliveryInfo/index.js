@@ -5,26 +5,25 @@ import { Container } from './styles';
 export default function DeliveryInfo({ delivery }) {
   return (
     <Container>
-      <strong>Informações da encomenda</strong>
-      <p>{delivery.recipient.address}</p>
-      <p>{delivery.recipient.city}</p>
-      <p>{delivery.recipient.zipcode}</p>
-
-      <hr />
-
-      <strong>Datas</strong>
-      <p>
-        <strong>Retirada</strong>: {delivery.start_date}
-        <strong>Entrega</strong>: {delivery.end_date}
-      </p>
-
-      {delivery.signature && (
-        <>
-          <hr />
-          <strong>Assinatura do destinatário</strong>
-          <img src={delivery.signature.url} alt="Assinatura" />
-        </>
-      )}
+      <div>
+        <strong>Informações da encomenda</strong>
+        <p>{delivery.recipient.address}</p>
+        <p>{delivery.recipient.city}</p>
+        <p>{delivery.recipient.zipcode}</p>
+      </div>
+      <div>
+        <strong>Datas</strong>
+        {delivery.start_date_formatted && (
+          <p>
+            <strong>Retirada:</strong> {delivery.start_date_formatted}
+          </p>
+        )}
+        {delivery.end_date_formatted && (
+          <p>
+            <strong>Entrega:</strong> {delivery.end_date_formatted}
+          </p>
+        )}
+      </div>
     </Container>
   );
 }

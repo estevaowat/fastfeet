@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { format, parseISO } from 'date-fns';
 import { MdSearch, MdAdd } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -62,10 +63,16 @@ export default function List() {
       });
 
       setPerPage(response.data.count / 20);
-
+      console.log(response.data.rows);
       const data = response.data.rows.map(delivery => ({
         ...delivery,
-        status: formatStatusDelivery(delivery)
+        status: formatStatusDelivery(delivery),
+        start_date_formatted: delivery.start_date
+          ? format(parseISO(delivery.start_date), 'dd/MM/yyyy')
+          : null,
+        end_date_formatted: delivery.end_date
+          ? format(parseISO(delivery.end_date), 'dd/MM/yyyy')
+          : null
       }));
 
       setDeliveries(data);

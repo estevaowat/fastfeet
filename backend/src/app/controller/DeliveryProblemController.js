@@ -9,7 +9,7 @@ class DeliveryProblemController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const deliveryProblems = await DeliveryProblem.findAll({
+    const deliveryProblems = await DeliveryProblem.findAndCountAll({
       limit: 20,
       offset: (page - 1) * 20,
       attributes: ['id', 'description'],
@@ -17,7 +17,7 @@ class DeliveryProblemController {
         {
           model: Delivery,
           as: 'delivery',
-          attributes: ['product'],
+          attributes: ['id', 'product'],
         },
       ],
     });

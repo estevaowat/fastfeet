@@ -17,7 +17,7 @@ export default function Create({ match }) {
   useEffect(() => {
     async function loadDelivery() {
       const { data } = await api.get(`deliveries/${id}`);
-      console.log(data);
+
       formRef.current.setData(data);
 
       formRef.current.setFieldValue('deliveryman_id', {

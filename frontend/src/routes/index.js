@@ -4,10 +4,11 @@ import Route from './Route';
 import SignIn from '~/pages/SignIn';
 import Deliveries from '~/pages/Deliveries/List';
 import CreateDeliveries from '~/pages/Deliveries/Create';
-import DeliveryMen from '~/pages/DeliveryMen/List';
-import CreateDeliveryMan from '~/pages/DeliveryMen/Create';
 import Recipients from '~/pages/Recipients/List';
 import CreateRecipients from '~/pages/Recipients/Create';
+import DeliveryMen from '~/pages/DeliveryMen/List';
+import CreateDeliveryMan from '~/pages/DeliveryMen/Create';
+import Problems from '~/pages/Problems';
 
 export default function Routes() {
   return (
@@ -65,7 +66,8 @@ export default function Routes() {
         component={CreateDeliveryMan}
         isPrivate
       />
-      <Route path="/problems" component={Deliveries} isPrivate />
+
+      <Route path="/problems" component={Problems} isPrivate />
     </Switch>
   );
 }
