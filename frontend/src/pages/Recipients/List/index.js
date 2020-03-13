@@ -5,12 +5,15 @@ import withReactContent from 'sweetalert2-react-content';
 
 import history from '~/services/history';
 import api from '~/services/api';
+import EmptyList from '~/components/EmptyList';
+import Loading from '~/components/Loading';
 import ActionButtons from '~/components/ActionButtons';
 import Pagination from '~/components/Pagination';
 import { Container, Controls, Grid } from './styles';
 
 export default function List() {
   const [recipients, setRecipients] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState({});
@@ -43,8 +46,9 @@ export default function List() {
 
       setRecipients(data);
     }
-
+    setLoading(true);
     loadRecipients();
+    setLoading(false);
   }, [page, search]);
 
   function handleDelete(id) {
@@ -97,42 +101,49 @@ export default function List() {
           <MdAdd size={20} color="#fff" /> CADASTRAR
         </button>
       </Controls>
-      <Grid>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {recipients.map(recipient => (
-            <tr key={recipient.id}>
-              <td>#{recipient.id}</td>
-              <td>{recipient.name}</td>
-              <td>{recipient.address_formatted}</td>
-              <td>
-                <ActionButtons
-                  visualizable={false}
-                  onEdit={() =>
-                    history.push(`/recipients/create/${recipient.id}`)
-                  }
-                  onDelete={() => handleDelete(recipient.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Grid>
-      <Pagination
-        onLeftChevron={() => {
-          setPage(page - 1);
-        }}
-        onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
-        leftDisabled={page === 1}
-        rightDisabled={nextPageDisabled}
-      />
+      {loading && <Loading loading={loading} />}
+      {recipients.length ? (
+        <>
+          <Grid>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recipients.map(recipient => (
+                <tr key={recipient.id}>
+                  <td>#{recipient.id}</td>
+                  <td>{recipient.name}</td>
+                  <td>{recipient.address_formatted}</td>
+                  <td>
+                    <ActionButtons
+                      visualizable={false}
+                      onEdit={() =>
+                        history.push(`/recipients/create/${recipient.id}`)
+                      }
+                      onDelete={() => handleDelete(recipient.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Grid>
+          <Pagination
+            onLeftChevron={() => {
+              setPage(page - 1);
+            }}
+            onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
+            leftDisabled={page === 1}
+            rightDisabled={nextPageDisabled}
+          />
+        </>
+      ) : (
+        <EmptyList />
+      )}
     </Container>
   );
 }

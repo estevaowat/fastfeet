@@ -88,11 +88,12 @@ export default function ActionButtons({
 }
 
 ActionButtons.propTypes = {
-  onEdit: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
   onDelete: PropTypes.func.isRequired,
   visualizable: PropTypes.bool
 };
 
 ActionButtons.defaultProps = {
+  onEdit: () => {},
   visualizable: false
 };

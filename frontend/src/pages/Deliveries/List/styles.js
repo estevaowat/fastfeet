@@ -18,7 +18,7 @@ export const Controls = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  label {
+  label:first-child {
     display: flex;
     background: #fff;
     align-items: center;
@@ -36,6 +36,21 @@ export const Controls = styled.div`
     svg {
       color: #999;
       margin: 0 15px 0 9px;
+    }
+  }
+
+  label {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    input {
+      height: 25px;
+      width: 25px;
+    }
+
+    span {
+      margin-left: 5px;
     }
   }
 

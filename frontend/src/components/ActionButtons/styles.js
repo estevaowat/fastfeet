@@ -45,6 +45,7 @@ export const ActionList = styled.ul`
 export const Action = styled.li`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 
   cursor: pointer;
 

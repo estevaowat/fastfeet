@@ -7,13 +7,19 @@ import api from '~/services/api';
 import history from '~/services/history';
 import DeliveryInfo from '../DeliveryInfo';
 import Pagination from '~/components/Pagination';
+import EmptyList from '~/components/EmptyList';
+import Loading from '~/components/Loading';
+
 import ActionButtons from '~/components/ActionButtons';
 
 import { Container, Controls, Grid, Status } from './styles';
 
 export default function List() {
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const [search, setSearch] = useState('');
+  const [canceled, setCanceled] = useState(false);
   const [deliveries, setDeliveries] = useState([]);
   const [perPage, setPerPage] = useState({});
   const nextPageDisabled = useMemo(() => {
@@ -58,12 +64,15 @@ export default function List() {
   useEffect(() => {
     async function loadDeliveries() {
       const response = await api.get('/deliveries', {
-        page,
-        query: search
+        params: {
+          page,
+          query: search,
+          canceled: canceled ? true : null
+        }
       });
 
       setPerPage(response.data.count / 20);
-      console.log(response.data.rows);
+
       const data = response.data.rows.map(delivery => ({
         ...delivery,
         status: formatStatusDelivery(delivery),
@@ -77,9 +86,10 @@ export default function List() {
 
       setDeliveries(data);
     }
-
+    setLoading(true);
     loadDeliveries();
-  }, [page, search]);
+    setLoading(false);
+  }, [page, search, canceled]);
 
   function handleDelete(id) {
     MySwal.fire({
@@ -137,6 +147,17 @@ export default function List() {
             }}
           />
         </label>
+        <label htmlFor="canceled">
+          <input
+            id="canceled"
+            type="checkbox"
+            checked={canceled}
+            onChange={() => {
+              setCanceled(!canceled);
+            }}
+          />
+          <span>Encomendas canceladas</span>
+        </label>
 
         <button
           type="button"
@@ -145,68 +166,80 @@ export default function List() {
           <MdAdd size={20} color="#fff" /> CADASTRAR
         </button>
       </Controls>
-      <Grid>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Destinatário</th>
-            <th>Entregador</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deliveries.map(delivery => (
-            <tr key={delivery.id}>
-              <td>#{delivery.id}</td>
-              <td> {delivery.recipient.name}</td>
-              <td>
-                <div>
-                  <img
-                    src={
-                      delivery.delivery_man.avatar
-                        ? delivery.delivery_man.avatar.url
-                        : `https://api.adorable.io/avatars/40/${delivery.delivery_man.name}.png`
-                    }
-                    alt={delivery.name}
-                  />
-                  {delivery.delivery_man.name}
-                </div>
-              </td>
-              <td> {delivery.recipient.city}</td>
-              <td> {delivery.recipient.state}</td>
-              <td>
-                <Status
-                  color={delivery.status.textColor}
-                  colorOutside={delivery.status.colorOutside}
-                >
-                  <div>{delivery.status.text}</div>
-                </Status>
-              </td>
-              <td>
-                <ActionButtons
-                  visualizable
-                  modalComponent={() => <DeliveryInfo delivery={delivery} />}
-                  onEdit={() =>
-                    history.push(`/deliveries/create/${delivery.id}`)
-                  }
-                  onDelete={() => handleDelete(delivery.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Grid>
-      <Pagination
-        onLeftChevron={() => {
-          setPage(page - 1);
-        }}
-        onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
-        leftDisabled={page === 1}
-        rightDisabled={nextPageDisabled}
-      />
+      {loading && <Loading loading={loading} />}
+      {deliveries.length ? (
+        <>
+          <Grid>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Destinatário</th>
+                <th>Entregador</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deliveries.map(delivery => (
+                <tr key={delivery.id}>
+                  <td>#{delivery.id}</td>
+                  <td> {delivery.product}</td>
+                  <td> {delivery.recipient.name}</td>
+                  <td>
+                    <div>
+                      <img
+                        src={
+                          delivery.delivery_man.avatar
+                            ? delivery.delivery_man.avatar.url
+                            : `https://api.adorable.io/avatars/40/${delivery.delivery_man.name}.png`
+                        }
+                        alt={delivery.name}
+                      />
+                      {delivery.delivery_man.name}
+                    </div>
+                  </td>
+                  <td> {delivery.recipient.city}</td>
+                  <td> {delivery.recipient.state}</td>
+                  <td>
+                    <Status
+                      color={delivery.status.textColor}
+                      colorOutside={delivery.status.colorOutside}
+                    >
+                      <div>{delivery.status.text}</div>
+                    </Status>
+                  </td>
+                  <td>
+                    <ActionButtons
+                      visualizable
+                      editable
+                      modalComponent={() => (
+                        <DeliveryInfo delivery={delivery} />
+                      )}
+                      onEdit={() =>
+                        history.push(`/deliveries/create/${delivery.id}`)
+                      }
+                      onDelete={() => handleDelete(delivery.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Grid>
+          <Pagination
+            onLeftChevron={() => {
+              setPage(page - 1);
+            }}
+            onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
+            leftDisabled={page === 1}
+            rightDisabled={nextPageDisabled}
+          />
+        </>
+      ) : (
+        <EmptyList />
+      )}
     </Container>
   );
 }

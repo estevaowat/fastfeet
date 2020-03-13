@@ -5,11 +5,14 @@ import withReactContent from 'sweetalert2-react-content';
 import history from '~/services/history';
 import api from '~/services/api';
 import ActionButtons from '~/components/ActionButtons';
+import EmptyList from '~/components/EmptyList';
+import Loading from '~/components/Loading';
 import Pagination from '~/components/Pagination';
 import { Container, Controls, Grid } from './styles';
 
 export default function List() {
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [deliveryMen, setDeliveryMen] = useState([]);
   const [perPage, setPerPage] = useState({});
@@ -31,7 +34,9 @@ export default function List() {
       setPerPage(response.data.count / 20);
       setDeliveryMen(response.data.rows);
     }
+    setLoading(true);
     loadDeliveryMen();
+    setLoading(false);
   }, [page, search]);
 
   function handleDelete(id) {
@@ -86,53 +91,60 @@ export default function List() {
           <MdAdd size={20} color="#fff" /> CADASTRAR
         </button>
       </Controls>
-      <Grid>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Foto</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deliveryMen.map(deliveryMan => (
-            <tr key={deliveryMan.id}>
-              <td>#{deliveryMan.id}</td>
-              <td>
-                <img
-                  src={
-                    deliveryMan.avatar
-                      ? deliveryMan.avatar.url
-                      : `https://api.adorable.io/avatars/40/${deliveryMan.name}.png`
-                  }
-                  alt={deliveryMan.name}
-                />
-              </td>
-              <td>{deliveryMan.name}</td>
-              <td>{deliveryMan.email}</td>
-              <td>
-                <ActionButtons
-                  visualizable={false}
-                  onEdit={() =>
-                    history.push(`/delivery-men/create/${deliveryMan.id}`)
-                  }
-                  onDelete={() => handleDelete(deliveryMan.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Grid>
-      <Pagination
-        onLeftChevron={() => {
-          setPage(page - 1);
-        }}
-        onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
-        leftDisabled={page === 1}
-        rightDisabled={nextPageDisabled}
-      />
+      {loading && <Loading loading={loading} />}
+      {deliveryMen.length ? (
+        <>
+          <Grid>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deliveryMen.map(deliveryMan => (
+                <tr key={deliveryMan.id}>
+                  <td>#{deliveryMan.id}</td>
+                  <td>
+                    <img
+                      src={
+                        deliveryMan.avatar
+                          ? deliveryMan.avatar.url
+                          : `https://api.adorable.io/avatars/40/${deliveryMan.name}.png`
+                      }
+                      alt={deliveryMan.name}
+                    />
+                  </td>
+                  <td>{deliveryMan.name}</td>
+                  <td>{deliveryMan.email}</td>
+                  <td>
+                    <ActionButtons
+                      visualizable={false}
+                      onEdit={() =>
+                        history.push(`/delivery-men/create/${deliveryMan.id}`)
+                      }
+                      onDelete={() => handleDelete(deliveryMan.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Grid>
+          <Pagination
+            onLeftChevron={() => {
+              setPage(page - 1);
+            }}
+            onRightChevron={() => !nextPageDisabled && setPage(page + 1)}
+            leftDisabled={page === 1}
+            rightDisabled={nextPageDisabled}
+          />
+        </>
+      ) : (
+        <EmptyList />
+      )}
     </Container>
   );
 }
