@@ -8,14 +8,37 @@ import Mail from '../../lib/Mail';
 
 class DeliveryController {
   async index(req, res) {
-    const { page = 1, query = '' } = req.query;
+    const { page = 1, query = '', canceled = false } = req.query;
+
+    const where = canceled
+      ? {
+          product: {
+            [Op.iLike]: `%${query}%`,
+          },
+          recipient_id: {
+            [Op.not]: null,
+          },
+          deliveryman_id: {
+            [Op.not]: null,
+          },
+          canceled_at: {
+            [Op.not]: null,
+          },
+        }
+      : {
+          product: {
+            [Op.iLike]: `%${query}%`,
+          },
+          recipient_id: {
+            [Op.not]: null,
+          },
+          deliveryman_id: {
+            [Op.not]: null,
+          },
+        };
 
     const deliveries = await Delivery.findAndCountAll({
-      where: {
-        product: {
-          [Op.iLike]: `%${query}%`,
-        },
-      },
+      where,
       order: ['id'],
       limit: 20,
       offset: (page - 1) * 20,
@@ -64,6 +87,9 @@ class DeliveryController {
         },
       ],
     });
+
+    if (canceled) {
+    }
 
     return res.json(deliveries);
   }
