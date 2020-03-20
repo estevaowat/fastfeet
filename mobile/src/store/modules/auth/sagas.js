@@ -1,4 +1,5 @@
 import { Alert } from 'react-native';
+import { format, parseISO } from 'date-fns';
 import { takeLatest, put, call, all } from 'redux-saga/effects';
 import api from '~/services/api';
 import { signInSuccess, signInFailure } from './actions';
@@ -12,8 +13,14 @@ export function* signIn({ payload }) {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(signInSuccess(token, user));
+    const data = {
+      ...user,
+      createdAt_formatted: format(parseISO(user.createdAt), 'dd/MM/yyyy'),
+    };
+
+    yield put(signInSuccess(token, data));
   } catch (error) {
+    console.tron.log('error', error);
     Alert.alert('Falha na autenticação', 'ID não encontrado');
     yield put(signInFailure());
   }

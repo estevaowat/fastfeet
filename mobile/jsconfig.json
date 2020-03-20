@@ -8,7 +8,12 @@
       {
         "name": "typescript-styled-plugin",
         "lint": {
-          "validProperties": ["tint-color"]
+          "validProperties": [
+            "tint-color",
+            "shadow-color",
+            "shadow-opacity",
+            "shadow-radius"
+          ]
         }
       }
     ]
