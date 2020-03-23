@@ -2,12 +2,14 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
-  padding: 13px 0 0 15px;
+  padding-top: 13px;
   margin-bottom: 28px;
+  border: 2px solid #eee;
 `;
 
 export const Header = styled.View`
   flex-direction: row;
+  padding-left: 15px;
 `;
 
 export const Product = styled.Text`

@@ -12,7 +12,8 @@
             "tint-color",
             "shadow-color",
             "shadow-opacity",
-            "shadow-radius"
+            "shadow-radius",
+            "elevation"
           ]
         }
       }

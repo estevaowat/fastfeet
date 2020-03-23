@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { format, parseISO } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { signOut } from '~/store/modules/auth/actions';
 import api from '~/services/api';
@@ -18,34 +19,61 @@ import {
   Controls,
   Title,
   Buttons,
-  PendentButton,
-  PendentText,
-  DeliveredButton,
-  DeliveredText,
+  FilterButton,
+  FilterText,
   DeliveriesList,
 } from './styles';
 
-export default function Deliveries() {
+export default function Deliveries({ navigation }) {
   const profile = useSelector(state => state.user.profile);
   const dispatch = useDispatch();
   const [deliveries, setDeliveries] = useState([]);
+  const [filter, setFilter] = useState('PENDENTES');
 
   useEffect(() => {
-    setDeliveries([
-      {
-        id: 1,
-        product: 'Carregador Iphone 8',
-        createdAt: new Date(),
-        city: 'Rio Sul',
-      },
-      {
-        id: 2,
-        product: 'Carregador Iphone 8',
-        createdAt: new Date(),
-        city: 'Rio Sul',
-      },
-    ]);
-  }, []);
+    async function loadDeliveries() {
+      const response = await api.get(`deliveryman/1/deliveries`, {
+        delivered: filter === 'ENTREGUES',
+      });
+
+      const data = response.data.map(delivery => ({
+        ...delivery,
+        createdAt_formatted: format(parseISO(delivery.createdAt), 'dd/MM/yyyy'),
+        status: displayStatus(delivery),
+        address_formatted: `${delivery.recipient.address}, ${
+          delivery.recipient.number
+        }${
+          delivery.recipient.address_complement
+            ? `, ${delivery.recipient.address_complement}`
+            : '-'
+        } ${delivery.recipient.city} - ${delivery.recipient.state} - ${
+          delivery.recipient.zip_code
+        }`,
+      }));
+
+      setDeliveries(data);
+    }
+
+    loadDeliveries();
+  }, [filter]);
+
+  function displayStatus(delivery) {
+    if (delivery.canceled) {
+      return 'Cancelada';
+    }
+
+    if (delivery.delivered) {
+      return 'ENTREGUE';
+    }
+
+    if (delivery.pending) {
+      return 'PENDENTE';
+    }
+
+    if (delivery.available) {
+      return 'AGUARDANDO RETIRADA';
+    }
+  }
 
   function handleSignOut() {
     dispatch(signOut());
@@ -74,19 +102,21 @@ export default function Deliveries() {
         <Controls>
           <Title>Entregas</Title>
           <Buttons>
-            <PendentButton>
-              <PendentText>Pendentes</PendentText>
-            </PendentButton>
-            <DeliveredButton>
-              <DeliveredText>Entregue</DeliveredText>
-            </DeliveredButton>
+            <FilterButton onPress={() => setFilter('PENDENTES')}>
+              <FilterText active={filter === 'PENDENTES'}>Pendentes</FilterText>
+            </FilterButton>
+            <FilterButton onPress={() => setFilter('ENTREGUES')}>
+              <FilterText active={filter === 'ENTREGUES'}>Entregue</FilterText>
+            </FilterButton>
           </Buttons>
         </Controls>
 
         <DeliveriesList
           data={deliveries}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <DeliveryItem data={item} />}
+          renderItem={({ item }) => (
+            <DeliveryItem data={item} navigation={navigation} />
+          )}
         />
       </Container>
     </Background>

@@ -1,6 +1,7 @@
 import { isBefore, isAfter, setHours, startOfHour } from 'date-fns';
 import { Op } from 'sequelize';
 import DeliveryMan from '../models/DeliveryMan';
+import Recipient from '../models/Recipient';
 import Delivery from '../models/Delivery';
 import File from '../models/File';
 
@@ -33,6 +34,10 @@ class WithdrawController {
             as: 'signature',
             attributes: ['name', 'path', 'url'],
           },
+          {
+            model: Recipient,
+            as: 'recipient',
+          },
         ],
       });
 
@@ -45,6 +50,21 @@ class WithdrawController {
         end_date: null,
         signature_id: null,
       },
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: [
+            'name',
+            'address',
+            'number',
+            'address_complement',
+            'city',
+            'state',
+            'zip_code',
+          ],
+        },
+      ],
     });
     return res.json(deliveries);
   }

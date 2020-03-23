@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StepIndicator from 'react-native-step-indicator';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -13,7 +14,7 @@ import {
   DetailButtonText,
 } from './styles';
 
-export default function DeliveryItem({ data }) {
+export default function DeliveryItem({ data, navigation }) {
   const labels = ['Aguardando Retirada', 'Retirada', 'Entregue'];
 
   const customStyles = {
@@ -34,7 +35,7 @@ export default function DeliveryItem({ data }) {
     stepIndicatorLabelCurrentColor: '#7D40E7',
     stepIndicatorLabelFinishedColor: '#7D40E7',
     stepIndicatorLabelUnFinishedColor: '#7D40E7',
-    labelColor: '#999999',
+    labelColor: '#999',
     labelSize: 8,
     currentStepLabelColor: '#999',
   };
@@ -53,16 +54,27 @@ export default function DeliveryItem({ data }) {
       <Details>
         <DetailInfo>
           <Label>Data</Label>
-          <DetailDescription>10/10/2019</DetailDescription>
+          <DetailDescription>{data.createdAt_formatted} </DetailDescription>
         </DetailInfo>
         <DetailInfo>
           <Label>Cidade</Label>
-          <DetailDescription>Diadema</DetailDescription>
+          <DetailDescription>{data.recipient.city}</DetailDescription>
         </DetailInfo>
-        <DetailButton>
+        <DetailButton
+          onPress={() =>
+            navigation.navigate('DeliveryDetails', { delivery: data })
+          }
+        >
           <DetailButtonText>Ver detalhes</DetailButtonText>
         </DetailButton>
       </Details>
     </Container>
   );
 }
+
+DeliveryItem.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

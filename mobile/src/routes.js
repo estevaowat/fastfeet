@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,9 +9,46 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from '~/pages/SignIn';
 import Deliveries from '~/pages/Deliveries';
 import Profile from '~/pages/Profile';
+import DeliveryDetails from '~/pages/DeliveryDetails';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
+
+function DeliveryStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Deliveries"
+        component={Deliveries}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="DeliveryDetails"
+        component={DeliveryDetails}
+        options={{
+          title: 'Detalhes da encomenda',
+          headerTitle: 'Detalhes da encomenda',
+          headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: '#7D40E7',
+          },
+          headerLeft: ({ navigation }) => (
+            <TouchableOpacity
+              onPress={() => {
+                return navigation.navigate('Deliveries');
+              }}
+            >
+              <Icon name="chevron-left" size={18} color="#fff" />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 15,
+          },
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function createRouter(isSigned = false) {
   return !isSigned ? (
@@ -23,6 +61,7 @@ export default function createRouter(isSigned = false) {
         keyboardHidesTabBar: true,
         activeTintColor: '#7D40E7',
         inactiveTintColor: '#999',
+
         style: {
           backgroundColor: '#fff',
         },
@@ -30,7 +69,7 @@ export default function createRouter(isSigned = false) {
     >
       <Stack.Screen
         name="Deliveries"
-        component={Deliveries}
+        component={DeliveryStack}
         options={{
           tabBarLabel: 'Entregas',
           tabBarIcon: ({ color }) => (
@@ -50,63 +89,4 @@ export default function createRouter(isSigned = false) {
       />
     </Tabs.Navigator>
   );
-  // createAppContainer(
-  //   createSwitchNavigator(
-  //     {
-  //       Sign: createSwitchNavigator({
-  //         SignIn,
-  //         SignUp,
-  //       }),
-  //       App: createBottomTabNavigator(
-  //         {
-  //           Dashboard,
-  //           New: {
-  //             screen: createStackNavigator(
-  //               {
-  //                 SelectProvider,
-  //                 SelectDateTime,
-  //                 Confirm,
-  //               },
-  //               {
-  //                 defaultNavigationOptions: {
-  //                   headerTransparent: true,
-  //                   headerTintColor: '#fff',
-  //                   headerLeftContainerStyle: {
-  //                     marginLeft: 20,
-  //                   },
-  //                 },
-  //               }
-  //             ),
-  //             navigationOptions: {
-  //               tabBarVisible: false,
-  //               tabBarLabel: 'Agendar',
-  //               tabBarIcon: (
-  //                 <Icon
-  //                   name="add-circle-outline"
-  //                   size={20}
-  //                   color="rgba(255, 255, 255, 0.6)"
-  //                 />
-  //               ),
-  //             },
-  //           },
-  //           Profile,
-  //         },
-  //         {
-  //           resetOnBlur: true,
-  //           tabBarOptions: {
-  //             keyboardHidesTabBar: true,
-  //             activeTintColor: '#FFF',
-  //             inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
-  //             style: {
-  //               backgroundColor: '#8d41a8',
-  //             },
-  //           },
-  //         }
-  //       ),
-  //     },
-  //     {
-  //       initialRouteName: signedIn ? 'App' : 'Sign',
-  //     }
-  //   )
-  // );
 }

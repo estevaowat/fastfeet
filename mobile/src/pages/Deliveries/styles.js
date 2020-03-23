@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.SafeAreaView`
@@ -51,21 +51,24 @@ export const Title = styled.Text`
 export const Buttons = styled.View`
   flex-direction: row;
 `;
-export const PendentButton = styled.View`
-  margin-right: 15px;
+export const FilterButton = styled(RectButton)`
+  margin: 0 7px;
 `;
-export const PendentText = styled.Text`
+export const FilterText = styled.Text`
   font-size: 12px;
   line-height: 16px;
   font-weight: bold;
-  color: #7d40e7;
-  text-decoration: underline;
+  color: ${props => (props.active ? '#7d40e7' : '#999')};
+
+  ${props =>
+    props.active &&
+    css`
+      text-decoration: underline;
+    `}
 `;
-export const DeliveredButton = styled.View``;
-export const DeliveredText = styled.Text``;
 
 export const DeliveriesList = styled.FlatList.attrs({
-  showVerticalScrollIndicator: false,
+  showsVerticalScrollIndicator: false,
 })`
   margin-top: 10px;
   border-radius: 4px;
