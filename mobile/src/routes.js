@@ -25,26 +25,22 @@ function DeliveryStack() {
       <Stack.Screen
         name="DeliveryDetails"
         component={DeliveryDetails}
-        options={{
+        options={({ navigation }) => ({
           title: 'Detalhes da encomenda',
           headerTitle: 'Detalhes da encomenda',
           headerTintColor: '#fff',
           headerStyle: {
             backgroundColor: '#7D40E7',
           },
-          headerLeft: ({ navigation }) => (
-            <TouchableOpacity
-              onPress={() => {
-                return navigation.navigate('Deliveries');
-              }}
-            >
-              <Icon name="chevron-left" size={18} color="#fff" />
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#FFF" />
             </TouchableOpacity>
           ),
           headerLeftContainerStyle: {
             marginLeft: 15,
           },
-        }}
+        })}
       />
     </Stack.Navigator>
   );
