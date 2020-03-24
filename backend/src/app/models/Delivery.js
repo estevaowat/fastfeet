@@ -23,10 +23,9 @@ class Delivery extends Model {
         pending: {
           type: Sequelize.VIRTUAL,
           get() {
-            return Boolean(this.start_date);
+            return Boolean(this.start_date) && Boolean(!this.end_date);
           },
         },
-
         available: {
           type: Sequelize.VIRTUAL,
           get() {

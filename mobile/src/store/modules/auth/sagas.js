@@ -20,7 +20,6 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, data));
   } catch (error) {
-    console.tron.log('error', error);
     Alert.alert('Falha na autenticação', 'ID não encontrado');
     yield put(signInFailure());
   }

@@ -12,8 +12,6 @@ import {
 
 export default function Profile() {
   const profile = useSelector(state => state.user.profile);
-  console.tron.log(profile);
-
   const dispatch = useDispatch();
 
   function handleSignOut() {

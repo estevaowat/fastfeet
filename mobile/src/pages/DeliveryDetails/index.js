@@ -20,7 +20,6 @@ import {
 
 export default function DeliveryDetails({ route }) {
   const { delivery } = route.params;
-  console.tron.log(delivery);
   return (
     <Background>
       <Container>
@@ -29,7 +28,6 @@ export default function DeliveryDetails({ route }) {
             <Icon name="local-shipping" size={20} color="#7D40E7" />
             <HeaderText>Informações da entrega</HeaderText>
           </Header>
-
           <InfoContent>
             <InfoTitle>
               <InfoTitleText>DESTINATÁRIO</InfoTitleText>
@@ -75,7 +73,9 @@ export default function DeliveryDetails({ route }) {
                 </InfoTitle>
                 <InfoDescription>
                   <InfoDescriptionText>
-                    {delivery.start_date ? delivery.start_date : '--/--/--'}
+                    {delivery.start_date_formatted
+                      ? delivery.start_date_formatted
+                      : '--/--/--'}
                   </InfoDescriptionText>
                 </InfoDescription>
               </Dates>
@@ -85,7 +85,9 @@ export default function DeliveryDetails({ route }) {
                 </InfoTitle>
                 <InfoDescription>
                   <InfoDescriptionText>
-                    {delivery.end_date ? delivery.end_date : '--/--/--'}
+                    {delivery.end_date_formatted
+                      ? delivery.end_date_formatted
+                      : '--/--/--'}
                   </InfoDescriptionText>
                 </InfoDescription>
               </Dates>
