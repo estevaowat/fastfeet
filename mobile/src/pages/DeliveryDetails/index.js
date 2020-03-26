@@ -16,9 +16,12 @@ import {
   Status,
   Dates,
   Controls,
+  DeliveryButton,
+  Separator,
+  DeliveryButtonText,
 } from './styles';
 
-export default function DeliveryDetails({ route }) {
+export default function DeliveryDetails({ navigation, route }) {
   const { delivery } = route.params;
   return (
     <Background>
@@ -94,7 +97,28 @@ export default function DeliveryDetails({ route }) {
             </DateContainer>
           </InfoContent>
         </Status>
-        <Controls />
+        <Controls>
+          <DeliveryButton
+            onPress={() => navigation.navigate('InformProblem', { delivery })}
+          >
+            <Icon name="remove-circle-outline" size={20} color="#E74040" />
+            <DeliveryButtonText>Informar problema</DeliveryButtonText>
+          </DeliveryButton>
+          <Separator />
+          <DeliveryButton
+            onPress={() => navigation.navigate('Problems', { delivery })}
+          >
+            <Icon name="error-outline" size={20} color="#E7BA40" />
+            <DeliveryButtonText>Visualizar problemas</DeliveryButtonText>
+          </DeliveryButton>
+          <Separator />
+          <DeliveryButton
+            onPress={() => navigation.navigate('ConfirmDelivery', { delivery })}
+          >
+            <Icon name="check-circle" size={20} color="#7D40E7" />
+            <DeliveryButtonText>Confirmar entrega</DeliveryButtonText>
+          </DeliveryButton>
+        </Controls>
       </Container>
     </Background>
   );

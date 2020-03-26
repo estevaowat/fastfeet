@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Background = styled.View`
   background: #7d40e7;
@@ -68,4 +69,34 @@ export const Status = styled.View`
   margin: 0 20px 5px 20px;
 `;
 
-export const Controls = styled.View``;
+export const Controls = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #f8f9fd;
+  border-radius: 4px;
+  height: 83px;
+  margin: 0 20px 0 20px;
+`;
+
+export const DeliveryButton = styled(RectButton)`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px;
+  height: 83px;
+`;
+
+export const Separator = styled.View`
+  border-left-width: 1px;
+  border-left-color: rgba(0, 0, 0, 0.1);
+  height: 83px;
+`;
+
+export const DeliveryButtonText = styled.Text`
+  margin-top: 2px;
+  font-size: 12px;
+  max-width: 60px;
+  color: #999;
+`;

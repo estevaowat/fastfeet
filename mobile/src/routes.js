@@ -10,6 +10,9 @@ import SignIn from '~/pages/SignIn';
 import Deliveries from '~/pages/Deliveries';
 import Profile from '~/pages/Profile';
 import DeliveryDetails from '~/pages/DeliveryDetails';
+import Problems from '~/pages/Deliveries/Problems';
+import InformProblem from '~/pages/Deliveries/InformProblem';
+import ConfirmDelivery from '~/pages/Deliveries/ConfirmDelivery';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -22,6 +25,69 @@ function DeliveryStack() {
         component={Deliveries}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Problems"
+        component={Problems}
+        options={({ navigation }) => ({
+          title: 'Visualizar problemas',
+          headerTitle: 'Visualizar problemas',
+          headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: '#7D40E7',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#FFF" />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 15,
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="InformProblem"
+        component={InformProblem}
+        options={({ navigation }) => ({
+          title: 'Informar problema',
+          headerTitle: 'Informar problema',
+          headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: '#7D40E7',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#FFF" />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 15,
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="ConfirmDelivery"
+        component={ConfirmDelivery}
+        options={({ navigation }) => ({
+          title: 'Confirmar entrega',
+          headerTitle: 'Confirmar entrega',
+          headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: '#7D40E7',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#FFF" />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 15,
+          },
+        })}
+      />
+
       <Stack.Screen
         name="DeliveryDetails"
         component={DeliveryDetails}

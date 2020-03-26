@@ -25,6 +25,18 @@ class DeliveryProblemController {
     return res.json(deliveryProblems);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+
+    const deliveryProblems = await DeliveryProblem.findAll({
+      where: {
+        delivery_id: id,
+      },
+    });
+
+    return res.json(deliveryProblems);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       description: Yup.string().required(),
