@@ -1,8 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Background from '~/components/Background';
+import HeaderBackground from '~/components/HeaderBackground';
 import {
-  Background,
   Container,
   Info,
   Header,
@@ -24,8 +25,9 @@ import {
 export default function DeliveryDetails({ navigation, route }) {
   const { delivery } = route.params;
   return (
-    <Background>
+    <Background color="#fff">
       <Container>
+        <HeaderBackground />
         <Info>
           <Header>
             <Icon name="local-shipping" size={20} color="#7D40E7" />
@@ -123,3 +125,9 @@ export default function DeliveryDetails({ navigation, route }) {
     </Background>
   );
 }
+
+DeliveryDetails.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

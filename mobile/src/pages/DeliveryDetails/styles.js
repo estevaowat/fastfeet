@@ -1,24 +1,21 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Background = styled.View`
-  background: #7d40e7;
-  height: 155px;
-`;
-
-export const Container = styled.SafeAreaView`
-  flex: 1;
-  top: 34px;
-  overflow: visible;
+export const Container = styled.View`
+  padding: ${Platform.OS === 'ios' ? '78px 20px 20px' : '88px 20px 20px'};
+  position: relative;
 `;
 
 export const Info = styled.View`
   flex-direction: column;
   background: #fff;
-  border: 1px solid #999;
+
   border-radius: 4px;
   padding: 15px;
-  margin: 0 20px 5px 20px;
+  margin: 34px 0 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  elevation: 3;
 `;
 
 export const Header = styled.View`
@@ -64,9 +61,9 @@ export const Status = styled.View`
   flex-direction: column;
   background: #fff;
   padding: 15px;
-  border: 1px solid #999;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  elevation: 3;
   border-radius: 4px;
-  margin: 0 20px 5px 20px;
 `;
 
 export const Controls = styled.View`
@@ -75,9 +72,10 @@ export const Controls = styled.View`
   align-items: center;
   justify-content: space-evenly;
   background: #f8f9fd;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  elevation: 3;
   border-radius: 4px;
   height: 83px;
-  margin: 0 20px 0 20px;
 `;
 
 export const DeliveryButton = styled(RectButton)`

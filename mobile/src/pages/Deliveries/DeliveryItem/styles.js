@@ -5,6 +5,9 @@ export const Container = styled.View`
   padding-top: 13px;
   margin-bottom: 28px;
   border: 2px solid #eee;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  elevation: 3;
 `;
 
 export const Header = styled.View`

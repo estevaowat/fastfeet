@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { format, parseISO } from 'date-fns';
 import api from '~/services/api';
+import Background from '~/components/Background';
+import HeaderBackground from '~/components/HeaderBackground';
 import {
   Container,
   ProblemsList,
@@ -30,19 +32,22 @@ export default function Problems({ route }) {
   }, [delivery.id]);
 
   return (
-    <Container>
-      <Title>{delivery.product}</Title>
+    <Background color="#fff">
+      <Container>
+        <HeaderBackground />
+        <Title>{delivery.product}</Title>
 
-      <ProblemsList
-        data={problems}
-        keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => (
-          <Problem>
-            <Description>{item.description}</Description>
-            <Date>{item.createdAt_formatted}</Date>
-          </Problem>
-        )}
-      />
-    </Container>
+        <ProblemsList
+          data={problems}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <Problem>
+              <Description>{item.description}</Description>
+              <Date>{item.createdAt_formatted}</Date>
+            </Problem>
+          )}
+        />
+      </Container>
+    </Background>
   );
 }

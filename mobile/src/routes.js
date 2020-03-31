@@ -30,19 +30,20 @@ function DeliveryStack() {
         component={Problems}
         options={({ navigation }) => ({
           title: 'Visualizar problemas',
+          headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+            left: 10,
+          },
+          headerTitleStyle: { fontWeight: 'bold' },
           headerTitle: 'Visualizar problemas',
           headerTintColor: '#fff',
-          headerStyle: {
-            backgroundColor: '#7D40E7',
-          },
+
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon name="chevron-left" size={20} color="#FFF" />
             </TouchableOpacity>
           ),
-          headerLeftContainerStyle: {
-            marginLeft: 15,
-          },
         })}
       />
 
@@ -95,17 +96,18 @@ function DeliveryStack() {
           title: 'Detalhes da encomenda',
           headerTitle: 'Detalhes da encomenda',
           headerTintColor: '#fff',
-          headerStyle: {
-            backgroundColor: '#7D40E7',
+          headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+            marginLeft: 15,
           },
+          headerTitleStyle: { fontWeight: 'bold' },
+
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon name="chevron-left" size={20} color="#FFF" />
             </TouchableOpacity>
           ),
-          headerLeftContainerStyle: {
-            marginLeft: 15,
-          },
         })}
       />
     </Stack.Navigator>

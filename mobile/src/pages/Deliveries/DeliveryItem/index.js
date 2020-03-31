@@ -29,7 +29,7 @@ export default function DeliveryItem({ data, navigation }) {
       <Details>
         <DetailInfo>
           <Label>Data</Label>
-          <DetailDescription>{data.createdAt_formatted} </DetailDescription>
+          <DetailDescription>{data.createdAt_formatted}</DetailDescription>
         </DetailInfo>
         <DetailInfo>
           <Label>Cidade</Label>
