@@ -1,8 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
-
-// import { Container } from './styles';
+import { RNCamera } from 'react-native-camera';
+import { Container } from './styles';
 
 export default function ConfirmDelivery() {
-  return <View />;
+  return (
+    <Container>
+      <RNCamera />
+    </Container>
+  );
 }
