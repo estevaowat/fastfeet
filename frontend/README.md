@@ -2,7 +2,7 @@
   <img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
 </h1>
 
-<h2 align="center">Frontend 🖥</h2>
+<strong align="center">Frontend 🖥</strong>
 
 ## Demo
 
