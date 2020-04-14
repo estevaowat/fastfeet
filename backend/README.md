@@ -3,6 +3,7 @@
 ## Pré-requisitos
 
 - NodeJS
+- Yarn
 - Docker
 
 ## Instalação
