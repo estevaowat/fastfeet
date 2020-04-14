@@ -44,3 +44,16 @@ export const Date = styled.Text`
   font-size: 12px;
   color: #c1c1c1;
 `;
+
+export const EmptyList = styled.View`
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyListText = styled.Text`
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+`;

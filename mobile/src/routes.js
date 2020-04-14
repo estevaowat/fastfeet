@@ -54,17 +54,17 @@ function DeliveryStack() {
           title: 'Informar problema',
           headerTitle: 'Informar problema',
           headerTintColor: '#fff',
-          headerStyle: {
-            backgroundColor: '#7D40E7',
+          headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+            marginLeft: 15,
           },
+          headerTitleStyle: { fontWeight: 'bold' },
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon name="chevron-left" size={20} color="#FFF" />
             </TouchableOpacity>
           ),
-          headerLeftContainerStyle: {
-            marginLeft: 15,
-          },
         })}
       />
 

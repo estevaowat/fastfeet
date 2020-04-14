@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import api from '~/services/api';
+import Background from '~/components/Background';
+import HeaderBackground from '~/components/HeaderBackground';
 import { Container, ProblemInput, InformButton } from './styles';
 
 export default function InformProblem({ route }) {
@@ -27,13 +29,16 @@ export default function InformProblem({ route }) {
   }
 
   return (
-    <Container>
-      <ProblemInput
-        onChangeText={text => setDescription(text)}
-        placeholder="Inclua aqui o problema que aconteceu na entrega"
-        value={description}
-      />
-      <InformButton onPress={handleInformProblem}> Enviar </InformButton>
-    </Container>
+    <Background color="#fff">
+      <Container>
+        <HeaderBackground />
+        <ProblemInput
+          onChangeText={text => setDescription(text)}
+          placeholder="Inclua aqui o problema que aconteceu na entrega"
+          value={description}
+        />
+        <InformButton onPress={handleInformProblem}> Enviar </InformButton>
+      </Container>
+    </Background>
   );
 }

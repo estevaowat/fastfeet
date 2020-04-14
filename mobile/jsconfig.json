@@ -4,6 +4,7 @@
     "paths": {
       "~/*": ["*"]
     },
+    "lib": ["es2016", "dom"],
     "plugins": [
       {
         "name": "typescript-styled-plugin",

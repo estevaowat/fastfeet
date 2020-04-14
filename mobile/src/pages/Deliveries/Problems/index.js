@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { format, parseISO } from 'date-fns';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '~/services/api';
 import Background from '~/components/Background';
 import HeaderBackground from '~/components/HeaderBackground';
@@ -11,6 +12,8 @@ import {
   Problem,
   Description,
   Date,
+  EmptyList,
+  EmptyListText,
 } from './styles';
 
 export default function Problems({ route }) {
@@ -37,16 +40,23 @@ export default function Problems({ route }) {
         <HeaderBackground />
         <Title>{delivery.product}</Title>
 
-        <ProblemsList
-          data={problems}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <Problem>
-              <Description>{item.description}</Description>
-              <Date>{item.createdAt_formatted}</Date>
-            </Problem>
-          )}
-        />
+        {problems.length ? (
+          <ProblemsList
+            data={problems}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => (
+              <Problem>
+                <Description>{item.description}</Description>
+                <Date>{item.createdAt_formatted}</Date>
+              </Problem>
+            )}
+          />
+        ) : (
+          <EmptyList>
+            <Icon name="sentiment-very-satisfied" size={36} color="#444" />
+            <EmptyListText>Nenhum problema encontrado</EmptyListText>
+          </EmptyList>
+        )}
       </Container>
     </Background>
   );

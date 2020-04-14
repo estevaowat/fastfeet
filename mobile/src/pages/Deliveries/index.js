@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useIsFocused } from '@react-navigation/native';
 import { signOut } from '~/store/modules/auth/actions';
 import api from '~/services/api';
 import Background from '~/components/Background';
@@ -26,50 +27,51 @@ import {
 } from './styles';
 
 export default function Deliveries({ navigation }) {
+  const isFocused = useIsFocused();
   const profile = useSelector(state => state.user.profile);
   const dispatch = useDispatch();
   const [deliveries, setDeliveries] = useState([]);
   const [filter, setFilter] = useState('pending');
 
-  useEffect(() => {
-    function displayStatus(delivery) {
-      if (delivery.canceled) {
-        return 'CANCELADA';
-      }
-
-      if (delivery.delivered) {
-        return 'ENTREGUE';
-      }
-
-      if (delivery.pending) {
-        return 'PENDENTE';
-      }
-
-      if (delivery.available) {
-        return 'AGUARDANDO RETIRADA';
-      }
-      return '';
-    }
-
-    function getCurrentPosition(delivery) {
-      if (delivery.canceled) {
-        return 0;
-      }
-
-      if (delivery.delivered) {
-        return 2;
-      }
-
-      if (delivery.pending) {
-        return 1;
-      }
-
-      if (delivery.available) {
-        return 0;
-      }
+  function getCurrentPosition(delivery) {
+    if (delivery.canceled) {
       return 0;
     }
 
+    if (delivery.delivered) {
+      return 2;
+    }
+
+    if (delivery.pending) {
+      return 1;
+    }
+
+    if (delivery.available) {
+      return 0;
+    }
+    return 0;
+  }
+
+  function displayStatus(delivery) {
+    if (delivery.canceled) {
+      return 'CANCELADA';
+    }
+
+    if (delivery.delivered) {
+      return 'ENTREGUE';
+    }
+
+    if (delivery.pending) {
+      return 'PENDENTE';
+    }
+
+    if (delivery.available) {
+      return 'AGUARDANDO RETIRADA';
+    }
+    return '';
+  }
+
+  useEffect(() => {
     async function loadDeliveries() {
       const response = await api.get(
         `deliveryman/${profile.id}/deliveries/${filter}`
@@ -100,9 +102,10 @@ export default function Deliveries({ navigation }) {
 
       setDeliveries(data);
     }
-
-    loadDeliveries();
-  }, [filter, profile.id]);
+    if (isFocused) {
+      loadDeliveries();
+    }
+  }, [isFocused, filter, profile.id]);
 
   function handleSignOut() {
     dispatch(signOut());
