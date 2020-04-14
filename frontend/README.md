@@ -1,14 +1,18 @@
-<h1 align="center">Frontend ⚙️</h1>
+<h1 align="center">
+  <img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
+</h1>
 
-## Pré-requisitos
-
-- React
-- Yarn
+<h2 align="center">Frontend 🖥</h2>
 
 ## Demo
 
 <img alt="Login fastfeet" title="Login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-login.png" width="600px" />
  <img alt="Entregas fastfeet" title="entregas Fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-deliveries.png" width="600px" />
+
+## Pré-requisitos
+
+- React
+- Yarn
 
 ## Instalação
 
