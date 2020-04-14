@@ -7,8 +7,8 @@
 
 ## Demo
 
-<img alt="Login fastfeet" title="Login fastfeet" src="https://github.com/estevaowat/movies-world-cup/blob/master/assets/resultado%20copa%20do%20mundo.PNG" width="600px" />
- <img alt="Entregas fastfeet" title="entregas Fastfeet" src="https://github.com/estevaowat/movies-world-cup/blob/master/assets/Copa%20do%20mundo%20de%20filmes.PNG" width="600px" />
+<img alt="Login fastfeet" title="Login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-login.png" width="600px" />
+ <img alt="Entregas fastfeet" title="entregas Fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-deliveries.png" width="600px" />
 
 ## Instalação
 
@@ -18,23 +18,15 @@
 yarn install
 ```
 
-- Precisa estar rodando o backend da aplicação para conseguir pelo menos fazer o login na aplicacao;
-
-- Crie um arquivo na raiz da pasta backend e renomeie para `.env` e complete com as variáveis de ambientes que faltam.
+- Precisa estar rodando o backend da aplicação para conseguir pelo menos fazer o login na aplicação;
 
 ## Como usar
 
 - Comando para rodar o projeto em modo de desenvolvimento:
 
 ```sh
-yarn dev
+yarn start
 ```
-
-## Tests
-
-Clique nesse botão para pegar todos os endpoint usando o insomnia.
-
-<a href="https://insomnia.rest/run/?label=git%40github.com%3Aestevaowat%2Ffastfeet.git&uri=https%3A%2F%2Fraw.githubusercontent.com%2Festevaowat%2Ffastfeet%2Fmaster%2Fbackend%2Finsomnia_requests.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 
 ---
 
