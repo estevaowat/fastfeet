@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '~/services/api';
@@ -61,3 +61,14 @@ export default function Problems({ route }) {
     </Background>
   );
 }
+
+Problems.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      delivery: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        product: PropTypes.string.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
+};

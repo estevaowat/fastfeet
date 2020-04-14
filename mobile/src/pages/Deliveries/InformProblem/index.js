@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'react-native';
 import api from '~/services/api';
 import Background from '~/components/Background';
@@ -42,3 +43,13 @@ export default function InformProblem({ route }) {
     </Background>
   );
 }
+
+InformProblem.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      delivery: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
+};

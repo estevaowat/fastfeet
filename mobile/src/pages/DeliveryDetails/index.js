@@ -130,4 +130,19 @@ DeliveryDetails.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      delivery: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        product: PropTypes.string.isRequired,
+        end_date_formatted: PropTypes.string.isRequired,
+        start_date_formatted: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        address_formatted: PropTypes.string.isRequired,
+        recipient: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
 };

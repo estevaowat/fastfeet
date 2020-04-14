@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Alert, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
@@ -38,6 +39,7 @@ export default function ConfirmDelivery({ route, navigation }) {
 
   async function handleSendButton() {
     try {
+      // eslint-disable-next-line no-undef
       const formData = new FormData();
 
       formData.append('file', {
@@ -103,3 +105,17 @@ export default function ConfirmDelivery({ route, navigation }) {
     </Container>
   );
 }
+
+ConfirmDelivery.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      delivery: PropTypes.shape({
+        deliveryman_id: PropTypes.number.isRequired,
+        id: PropTypes.number.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
