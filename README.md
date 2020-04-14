@@ -10,21 +10,18 @@
   </a>
 </p>
 
-## About
+## Sobre
 
-This is a mono repository to a transporter application to control deliveries using NodeJS, ReactJs and React Native and tools around this environment.
+Este é o repositório sobre uma aplicação de entregas usando NodeJS, ReactJs e React Native.
+Dentro das pastas estão as instruçōes para rodar o projeto dentro da máquina.
 
-## Author
+## Autor
 
 👤 **estevaowat**
 
 - Website: https://www.linkedin.com/in/estev%C3%A3o-watanabe-b25795124/
 - Twitter: [@estevao_japa](https://twitter.com/estevao_japa)
 - Github: [@estevaowat](https://github.com/estevaowat)
-
-## Show your support
-
-Give a ⭐️ if you liked this project!
 
 ---
 
