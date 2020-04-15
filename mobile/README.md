@@ -11,9 +11,7 @@
 <img alt="Entregas fastfeet" title="Entregas fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-deliveries.png" width="300px" />
 <img alt="perfil" title="perfil" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-profile.png" width="300px" />
 </div>
-<strong> Esse app foi testado somente no IOS</strong>
-
-## Demo
+<strong>*Esse app foi testado somente no IOS</strong>
 
 ## Pré-requisitos
 
