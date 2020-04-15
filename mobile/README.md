@@ -6,8 +6,9 @@
 
 ## Demo
 
-<img alt="Login fastfeet" title="Login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-login.png" width="600px" />
- <img alt="Entregas fastfeet" title="entregas Fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/frontend/assets/fastfeet-deliveries.png" width="750px" />
+<img alt="login fastfeet" title="login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-mobile.png" width="300px" />
+<img alt="Entregas fastfeet" title="Entregas fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-deliveries.png" width="300px" />
+<img alt="perfil" title="perfil" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-profile.png" width="300px" />
 
 <strong> Esse app foi testado somente no IOS</strong>
 
