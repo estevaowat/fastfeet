@@ -6,10 +6,11 @@
 
 ## Demo
 
-<img alt="login fastfeet" title="login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-mobile.png" width="300px" />
+<div style="display:flex;flex-direction:row;">
+<img style="margin:0 10px;"alt="login fastfeet" title="login fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-mobile.png" width="300px" />
 <img alt="Entregas fastfeet" title="Entregas fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-deliveries.png" width="300px" />
 <img alt="perfil" title="perfil" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-profile.png" width="300px" />
-
+</div>
 <strong> Esse app foi testado somente no IOS</strong>
 
 ## Demo
