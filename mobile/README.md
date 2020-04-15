@@ -2,7 +2,7 @@
   <img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
 </h1>
 
-<h2 align="center">Frontend 🖥</h2>
+<h2 align="center">Mobile 🖥</h2>
 
 ## Demo
 
@@ -11,7 +11,7 @@
 <img alt="Entregas fastfeet" title="Entregas fastfeet" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-deliveries.png" width="300px" />
 <img alt="perfil" title="perfil" src="https://github.com/estevaowat/fastfeet/blob/master/mobile/assets/fastfeet-profile.png" width="300px" />
 </div>
-<strong>*Esse app foi testado somente no IOS</strong>
+<strong>* Esse app foi testado somente no IOS</strong>
 
 ## Pré-requisitos
 
@@ -27,7 +27,7 @@
 yarn install
 ```
 
-Obs.: Se estiver rodando no IOS, entre na pasta `ios` e rode o comando pod install para instalar as dependências para o IOS.
+Obs.: Se estiver rodando no IOS, entre na pasta `ios` e rode o comando `pod install` para instalar as dependências para o IOS.
 
 - Precisa estar rodando o backend da aplicação para conseguir pelo menos fazer o login na aplicação;
 
