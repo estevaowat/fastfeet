@@ -23,7 +23,3 @@ Dentro das pastas estão as instruçōes para rodar o projeto dentro da máquina
 - Website: https://www.linkedin.com/in/estev%C3%A3o-watanabe-b25795124/
 - Twitter: [@estevao_japa](https://twitter.com/estevao_japa)
 - Github: [@estevaowat](https://github.com/estevaowat)
-
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
