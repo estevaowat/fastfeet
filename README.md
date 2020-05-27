@@ -12,7 +12,8 @@
 
 ## Sobre
 
-Este é o repositório sobre uma aplicação de entregas usando NodeJS, ReactJs e React Native.
+Este é o repositório sobre uma aplicação de controle de entregas usando NodeJS, ReactJs e React Native usado para fins de estudo.
+
 Dentro das pastas estão as instruçōes para rodar o projeto dentro da máquina.
 
 ## Autor
