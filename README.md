@@ -1,7 +1,7 @@
 <h1 align="center">
   <img align="center" src="https://raw.githubusercontent.com/estevaowat/fastfeet/master/.github/logo.png"/>
 </h1>
-<h2 align="center">Welcome to Fastfeet 👋</h2>
+<strong style="font-size: 18px;" align="center">Welcome to Fastfeet 👋</h2>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
  
