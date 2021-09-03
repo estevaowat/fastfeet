@@ -18,7 +18,7 @@
     "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
     "eslint-plugin-prettier": "^3.1.2",
     "history": "^4.10.1",
-    "immer": "^5.3.6",
+    "immer": "^9.0.6",
     "polished": "^3.4.4",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
